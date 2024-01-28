@@ -1,27 +1,27 @@
 #!/usr/bin/python3
-"""
-Defines a method that calculates the fewest number of operations needed
-to result in exactly n copies of a character in a text file, whose
-only operations are Copy All and Paste
+""" Script that computes a minimum operations
+    needed in a CopyAll - Paste task
 """
 
 
 def minOperations(n):
     """
-    Calculates the fewest number of operations needed to result in exactly
-    n copies of a character in a text file, whose only operations are Copy
-    All and Paste
+    Method for compute the minimum number
+    of operations for task Copy All and Paste
 
-    parameters:
-        n [int]: the number of copies desired
-
-    returns:
-        the fewest number of operations needed to result in exactly n copies
-        of a character in a text file, or 0 if n is impossible to achieve
+    Args:
+        n: input value
+        factor_list: List to save the operations
+    Return: the sum of the operations
     """
-    if n <= 1:
+    if n < 2:
         return 0
-    for i in range(2, n + 1):
+    factor_list = []
+    i = 1
+    while n != 1:
+        i += 1
         if n % i == 0:
-            return minOperations(int(n / i)) + i
-    return n
+            while n % i == 0:
+                n /= i
+                factor_list.append(i)
+    return sum(factor_list)
