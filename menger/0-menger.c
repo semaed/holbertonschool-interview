@@ -39,4 +39,3 @@ char get_character(int row, int col)
     }
     return ('#');
 }
-ajscjkdckj
