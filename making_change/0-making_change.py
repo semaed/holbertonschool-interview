@@ -1,25 +1,23 @@
 #!/usr/bin/python3
-""" makechange challenge """
+
+"""
+Change comes from within
+"""
 
 
 def makeChange(coins, total):
     """
-    mkechange challenge
+    Return the fewest number of coins needed to meet total
     """
+    temp_value = 0
+    coins.sort(reverse=True)
 
-    if total <= 0:
+    if total < 0:
         return 0
 
-    coins.sort(reverse=True)
-    sum = 0
-    i = 0
-    counter = 0
-    num_coins = len(coins)
-    while sum < total and i < num_coins:
-        while coins[i] <= total - sum:
-            sum += coins[i]
-            counter += 1
-            if sum == total:
-                return counter
-        i += 1
-    return -1
+    for coin in coins:
+        if total % coin <= total:
+            temp_value += total // coin
+            total = total % coin
+
+    return temp_value if total == 0 else -1
